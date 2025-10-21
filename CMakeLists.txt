@@ -4,6 +4,7 @@ project(my-game)
 # Generate compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(SOURCE_DIR "src/")
+set(TESTS_DIR "tests/")
 
 # Dependencies
 set(RAYLIB_VERSION 5.5)
@@ -23,6 +24,18 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 add_subdirectory(external/raylib-cpp)
+
+# Tests
+Include(FetchContent)
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.8.1 # or a later release
+)
+FetchContent_MakeAvailable(Catch2)
+
+add_executable(tests "${TESTS_DIR}/test-main.cpp")
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
 # Our Project
 add_executable(${PROJECT_NAME} "${SOURCE_DIR}/main.cpp")
