@@ -37,8 +37,11 @@ FetchContent_MakeAvailable(Catch2)
 add_executable(tests "${TESTS_DIR}/test-main.cpp")
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
+# Project files
+file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")
+
 # Our Project
-add_executable(${PROJECT_NAME} "${SOURCE_DIR}/main.cpp")
+add_executable(${PROJECT_NAME} "${SOURCES}")
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib raylib_cpp)
 
