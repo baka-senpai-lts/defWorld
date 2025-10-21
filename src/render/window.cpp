@@ -1,6 +1,5 @@
 #include "window.hpp"
 #include "Functions.hpp"
-#include "ShaderUnmanaged.hpp"
 #include <cstdint>
 #include <memory>
 
