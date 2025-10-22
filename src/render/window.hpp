@@ -1,10 +1,12 @@
 #ifndef WINDOW_H_
 #define WINDOW_H_
 
+#include "../events/event.hpp"
 #include "Window.hpp"
 
 #include <cstdint>
 #include <memory>
+#include <queue>
 #include <string>
 
 namespace game::render {
@@ -15,6 +17,7 @@ private:
   uint32_t size_y;
   uint32_t target_fps;
   std::string window_name;
+  std::queue<std::unique_ptr<Event>> event_queue;
 
   std::unique_ptr<raylib::Window> window;
 
@@ -24,11 +27,14 @@ public:
          uint32_t target_fps);
   ~Window() {};
 
-  bool shouldClose();
-  float getFrameTime();
+  bool shouldClose() const;
+  float getFrameTime() const;
+
+  size_t getEventQueueSize() const;
+  std::unique_ptr<Event> popEvent();
 
   void init();
-  void runFrame(float frameTime);
+  void drawFrame();
   void die();
 };
 

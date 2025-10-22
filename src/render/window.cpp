@@ -15,6 +15,14 @@ Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name,
   this->target_fps = target_fps;
 }
 
+size_t Window::getEventQueueSize() const { return event_queue.size(); }
+
+std::unique_ptr<Event> Window::popEvent() {
+  std::unique_ptr<Event> val = std::move(event_queue.front());
+  event_queue.pop();
+  return val;
+};
+
 void Window::init() {
   window = std::make_unique<raylib::Window>(this->size_x, this->size_y,
                                             this->window_name);
@@ -23,11 +31,11 @@ void Window::init() {
 
 void Window::die() { window.reset(); }
 
-bool Window::shouldClose() { return window->ShouldClose(); }
+bool Window::shouldClose() const { return window->ShouldClose(); }
 
-float Window::getFrameTime() { return window->GetFrameTime(); }
+float Window::getFrameTime() const { return window->GetFrameTime(); }
 
-void Window::runFrame(float frameTime) {
+void Window::drawFrame() {
   window->BeginDrawing();
   window->ClearBackground(RAYWHITE);
   raylib::DrawText("Hello Raylib-cpp!", 200, 280, 20, BLACK);
