@@ -6,7 +6,7 @@ int main() {
 
   window.init();
   while (!window.shouldClose()) {
-    window.runFrame(window.getFrameTime());
+    window.drawFrame();
   }
   window.die();
 
