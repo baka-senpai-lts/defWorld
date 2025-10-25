@@ -226,6 +226,7 @@ void Window::drawFrame() {
   window->BeginDrawing();
   window->ClearBackground(RAYWHITE);
   raylib::DrawText("Hello Raylib-cpp!", 200, 280, 20, BLACK);
+  DrawFPS(0, 0);
   window->EndDrawing();
 }
 
