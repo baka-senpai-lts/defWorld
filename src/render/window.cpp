@@ -1,7 +1,10 @@
 #include "window.hpp"
 #include "../events/key_down.hpp"
 #include "../events/key_up.hpp"
+#include "../events/mouse_down.hpp"
 #include "../events/mouse_move.hpp"
+#include "../events/mouse_up.hpp"
+#include "Mouse.hpp"
 
 #include <cstdint>
 #include <memory>
@@ -193,6 +196,30 @@ void Window::pollEvents() {
 
     mouse_pos.x = current_mouse_pos.x;
     mouse_pos.y = current_mouse_pos.y;
+  }
+
+  for (const auto &[button, previous_button_state] : mouse_state) {
+    const KeyState current_button_state =
+        raylib::Mouse::IsButtonDown(button) ? KeyState::Down : KeyState::Up;
+
+    if (previous_button_state != current_button_state) {
+      std::shared_ptr<Event> event;
+
+      switch (current_button_state) {
+      case KeyState::Down:
+        event = std::make_shared<event::MouseDownEvent>(button);
+        break;
+      case KeyState::Up:
+        event = std::make_shared<event::MouseUpEvent>(button);
+        break;
+      }
+
+      if (event != nullptr) {
+        event_queue.push(event);
+      }
+
+      mouse_state[button] = current_button_state;
+    }
   }
 }
 
