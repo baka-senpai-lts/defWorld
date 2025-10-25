@@ -10,6 +10,7 @@ enum EventType {
   MOUSE_MOVE,
   MOUSE_UP,
   MOUSE_DOWN,
+  MOUSE_WHEEL_MOVE,
   WINDOW_RESIZE
 };
 
