@@ -183,6 +183,10 @@ void Window::pollEvents() {
 size_t Window::getEventQueueSize() const { return event_queue.size(); }
 
 std::shared_ptr<Event> Window::popEvent() {
+  if (event_queue.size() == 0) {
+    return nullptr;
+  }
+
   std::shared_ptr<Event> val = event_queue.front();
   event_queue.pop();
   return val;
