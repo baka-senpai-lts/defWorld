@@ -1,8 +1,6 @@
 #include "window.hpp"
 #include "../events/key_down.hpp"
 #include "../events/key_up.hpp"
-#include "Functions.hpp"
-#include "Keyboard.hpp"
 
 #include <cstdint>
 #include <memory>

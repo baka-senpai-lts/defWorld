@@ -2,7 +2,6 @@
 #define WINDOW_H_
 
 #include "../events/event.hpp"
-#include "Window.hpp"
 #include "raylib-cpp.hpp" // IWYU pragma: keep
 
 #include <cstdint>
