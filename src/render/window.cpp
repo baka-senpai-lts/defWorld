@@ -4,7 +4,6 @@
 #include "../events/mouse_down.hpp"
 #include "../events/mouse_move.hpp"
 #include "../events/mouse_up.hpp"
-#include "Mouse.hpp"
 
 #include <cstdint>
 #include <memory>
