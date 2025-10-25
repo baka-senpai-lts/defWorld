@@ -3,7 +3,15 @@
 
 namespace game {
 
-enum EventType { NONE, KEY_UP, KEY_DOWN, MOUSE_MOVE, MOUSE_UP, MOUSE_DOWN };
+enum EventType {
+  NONE,
+  KEY_UP,
+  KEY_DOWN,
+  MOUSE_MOVE,
+  MOUSE_UP,
+  MOUSE_DOWN,
+  WINDOW_RESIZE
+};
 
 class Event {
 protected:
@@ -11,7 +19,7 @@ protected:
 
 public:
   Event() : type(EventType::NONE) {}
-  virtual ~Event();
+  ~Event() {}
 
   EventType getEventType() const { return type; };
 };
