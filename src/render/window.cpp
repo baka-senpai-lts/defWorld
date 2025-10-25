@@ -1,6 +1,7 @@
 #include "window.hpp"
 #include "../events/key_down.hpp"
 #include "../events/key_up.hpp"
+#include "../events/mouse_move.hpp"
 
 #include <cstdint>
 #include <memory>
@@ -141,6 +142,10 @@ Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name)
   for (size_t i = 0; i < mouse_len; i++) {
     this->mouse_state[all_mouse_keys[i]] = KeyState::Up;
   }
+
+  // Will be overriden at first event poll, so any values should be fine
+  this->mouse_pos.x = 0;
+  this->mouse_pos.y = 0;
 }
 
 Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name,
@@ -153,6 +158,7 @@ void Window::pollEvents() {
   if (window == nullptr || !window->IsFocused())
     return;
 
+  // Keyboard events
   for (const auto &[key, previous_key_state] : keyboard_state) {
     const KeyState current_key_state =
         raylib::Keyboard::IsKeyDown(key) ? KeyState::Down : KeyState::Up;
@@ -175,6 +181,18 @@ void Window::pollEvents() {
 
       keyboard_state[key] = current_key_state;
     }
+  }
+
+  // Mouse events
+  Vector2 current_mouse_pos = raylib::Mouse::GetPosition();
+
+  if (current_mouse_pos.x != mouse_pos.x &&
+      current_mouse_pos.y != mouse_pos.y) {
+    event_queue.push(
+        std::make_shared<event::MouseMoveEvent>(current_mouse_pos));
+
+    mouse_pos.x = current_mouse_pos.x;
+    mouse_pos.y = current_mouse_pos.y;
   }
 }
 

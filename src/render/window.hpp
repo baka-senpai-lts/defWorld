@@ -28,6 +28,8 @@ private:
   std::unordered_map<KeyboardKey, KeyState> keyboard_state;
   std::unordered_map<MouseButton, KeyState> mouse_state;
 
+  Vector2 mouse_pos;
+
   std::unique_ptr<raylib::Window> window;
 
 public:
