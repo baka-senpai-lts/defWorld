@@ -4,6 +4,7 @@
 #include "../events/mouse_down.hpp"
 #include "../events/mouse_move.hpp"
 #include "../events/mouse_up.hpp"
+#include "../events/mouse_wheel_move.hpp"
 
 #include <cstdint>
 #include <memory>
@@ -219,6 +220,12 @@ void Window::pollEvents() {
 
       mouse_state[button] = current_button_state;
     }
+  }
+
+  float mouse_wheel_movement = raylib::Mouse::GetWheelMove();
+  if (mouse_wheel_movement != 0) {
+    event_queue.push(
+        std::make_shared<event::MouseWheelMoveEvent>(mouse_wheel_movement));
   }
 }
 
