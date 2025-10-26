@@ -34,10 +34,10 @@ public:
 
   void setPos(Vector2 new_pos) { pos = new_pos; }
 
-  virtual void draw() = 0;
+  virtual void draw() const = 0;
 
-  void draw(Vector2 offset) {
-    // I know it's shit, but I guess it should work
+  void draw(const Vector2 &offset) {
+    // I know it's shit, but it works
     pos.x += offset.x;
     pos.y += offset.y;
     draw();
