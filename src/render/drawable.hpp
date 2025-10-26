@@ -27,13 +27,13 @@ public:
 
   float getX() const { return pos.x; }
   float getY() const { return pos.y; }
-  float getZ() const { return z; }
+  int getZ() const { return z; }
 
   Vector2 getPos() const { return pos; };
 
   void setX(float x) { pos.x = x; }
   void setY(float y) { pos.y = y; }
-  void setZ(float z) { z = z; }
+  void setZ(int z) { this->z = z; }
 
   void setPos(Vector2 new_pos) { pos = new_pos; }
 
