@@ -5,6 +5,7 @@
 #include "../events/mouse_move.hpp"
 #include "../events/mouse_up.hpp"
 #include "../events/mouse_wheel_move.hpp"
+#include "drawable.hpp"
 
 #include <cstdint>
 #include <memory>
@@ -255,10 +256,16 @@ bool Window::shouldClose() const { return window->ShouldClose(); }
 
 float Window::getFrameTime() const { return window->GetFrameTime(); }
 
-void Window::drawFrame() {
+void Window::drawFrame(
+    const std::vector<std::shared_ptr<Drawable>> &drawables) {
   window->BeginDrawing();
+
   window->ClearBackground(RAYWHITE);
-  raylib::DrawText("Hello Raylib-cpp!", 200, 280, 20, BLACK);
+
+  for (const std::shared_ptr<Drawable> &drawable : drawables) {
+    drawable->draw();
+  }
+
   DrawFPS(0, 0);
   window->EndDrawing();
 }

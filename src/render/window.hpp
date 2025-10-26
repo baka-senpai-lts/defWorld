@@ -2,6 +2,7 @@
 #define WINDOW_H_
 
 #include "../events/event.hpp"
+#include "drawable.hpp"
 #include "raylib-cpp.hpp" // IWYU pragma: keep
 
 #include <cstdint>
@@ -47,7 +48,7 @@ public:
   std::shared_ptr<Event> popEvent();
 
   void init();
-  void drawFrame();
+  void drawFrame(const std::vector<std::shared_ptr<Drawable>> &drawables);
   void die();
 };
 
