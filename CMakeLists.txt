@@ -41,7 +41,7 @@ target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")
 
 # Our Project
-add_executable(${PROJECT_NAME} "${SOURCES}")
+add_executable(${PROJECT_NAME} ${SOURCES})
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib raylib_cpp)
 
