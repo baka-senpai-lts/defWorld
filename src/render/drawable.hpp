@@ -35,6 +35,15 @@ public:
   void setPos(Vector2 new_pos) { pos = new_pos; }
 
   virtual void draw() = 0;
+
+  void draw(Vector2 offset) {
+    // I know it's shit, but I guess it should work
+    pos.x += offset.x;
+    pos.y += offset.y;
+    draw();
+    pos.x -= offset.x;
+    pos.y -= offset.y;
+  };
 };
 
 } // namespace game::render
