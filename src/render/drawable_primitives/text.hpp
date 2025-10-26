@@ -20,7 +20,7 @@ public:
 
   ~Text() override {};
 
-  void draw() override;
+  void draw() const override;
 };
 
 } // namespace game::render

@@ -12,6 +12,8 @@ Text::Text(std::string str, Vector2 pos, int font_size, Color color)
   this->color = color;
 }
 
-void Text::draw() { DrawText(str.c_str(), pos.x, pos.y, font_size, color); }
+void Text::draw() const {
+  DrawText(str.c_str(), pos.x, pos.y, font_size, color);
+}
 
 } // namespace game::render
