@@ -1,4 +1,7 @@
 #include "drawable_collection.hpp"
+#include <algorithm>
+#include <memory>
+#include <vector>
 
 namespace game::render {
 
@@ -27,8 +30,18 @@ std::shared_ptr<Drawable> DrawableCollection::get(const std::string &key) {
 }
 
 void DrawableCollection::draw() const {
+  std::vector<std::shared_ptr<Drawable>> drawables_vec;
+  drawables_vec.reserve(drawables.size());
+
   for (const auto &[_, drawable] : drawables) {
-    drawable->draw(pos);
+    drawables_vec.push_back(drawable);
+  }
+
+  std::sort(drawables_vec.begin(), drawables_vec.end(),
+            [](const auto &a, const auto &b) { return a->getZ() < b->getZ(); });
+
+  for (const std::shared_ptr<Drawable> &drawable : drawables_vec) {
+    drawable->draw();
   }
 }
 

@@ -7,6 +7,7 @@
 #include "../events/mouse_wheel_move.hpp"
 #include "drawable.hpp"
 
+#include <algorithm>
 #include <cstdint>
 #include <memory>
 #include <raylib.h>
@@ -262,7 +263,12 @@ void Window::drawFrame(
 
   window->ClearBackground(RAYWHITE);
 
-  for (const std::shared_ptr<Drawable> &drawable : drawables) {
+  std::vector<std::shared_ptr<Drawable>> drawables_sorted(drawables);
+
+  std::sort(drawables_sorted.begin(), drawables_sorted.end(),
+            [](const auto &a, const auto &b) { return a->getZ() < b->getZ(); });
+
+  for (const std::shared_ptr<Drawable> &drawable : drawables_sorted) {
     drawable->draw();
   }
 
