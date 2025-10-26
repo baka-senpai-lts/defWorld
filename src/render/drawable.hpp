@@ -8,29 +8,32 @@ namespace game::render {
 class Drawable {
 protected:
   Vector2 pos;
+  int z;
 
 public:
-  Drawable() {
+  Drawable(int z = 0) : z(0) {
     pos.x = 0;
     pos.y = 0;
   }
 
-  Drawable(float x, float y) {
+  Drawable(float x, float y, int z = 0) : z(z) {
     pos.x = x;
     pos.y = y;
   }
 
-  Drawable(Vector2 pos) : pos(pos) {}
+  Drawable(Vector2 pos, int z = 0) : pos(pos), z(0) {}
 
   virtual ~Drawable() {}
 
   float getX() const { return pos.x; }
   float getY() const { return pos.y; }
+  float getZ() const { return z; }
 
   Vector2 getPos() const { return pos; };
 
   void setX(float x) { pos.x = x; }
   void setY(float y) { pos.y = y; }
+  void setZ(float z) { z = z; }
 
   void setPos(Vector2 new_pos) { pos = new_pos; }
 
