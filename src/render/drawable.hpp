@@ -11,7 +11,7 @@ protected:
   int z;
 
 public:
-  Drawable(int z = 0) : z(0) {
+  Drawable(int z = 0) : z(z) {
     pos.x = 0;
     pos.y = 0;
   }
@@ -21,7 +21,7 @@ public:
     pos.y = y;
   }
 
-  Drawable(Vector2 pos, int z = 0) : pos(pos), z(0) {}
+  Drawable(Vector2 pos, int z = 0) : pos(pos), z(z) {}
 
   virtual ~Drawable() {}
 
