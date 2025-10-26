@@ -17,7 +17,7 @@ private:
 public:
   DrawableCollection(
       std::unordered_map<std::string, std::shared_ptr<Drawable>> drawables,
-      Vector2 pos);
+      Vector2 pos, int z = 0);
   ~DrawableCollection() override {};
 
   void set(std::string key, std::shared_ptr<Drawable> drawable);

@@ -15,8 +15,8 @@ private:
   Color color;
 
 public:
-  Text(std::string str, Vector2 pos, int font_size);
-  Text(std::string str, Vector2 pos, int font_size, Color color);
+  Text(std::string str, Vector2 pos, int font_size, int z = 0);
+  Text(std::string str, Vector2 pos, int font_size, Color color, int z = 0);
 
   ~Text() override {};
 

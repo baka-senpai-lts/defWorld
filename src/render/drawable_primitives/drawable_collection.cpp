@@ -4,8 +4,8 @@ namespace game::render {
 
 DrawableCollection::DrawableCollection(
     std::unordered_map<std::string, std::shared_ptr<Drawable>> drawables,
-    Vector2 pos)
-    : Drawable(pos), drawables(drawables) {}
+    Vector2 pos, int z)
+    : Drawable(pos, z), drawables(drawables) {}
 
 void DrawableCollection::set(std::string key,
                              std::shared_ptr<Drawable> drawable) {
