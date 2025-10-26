@@ -190,7 +190,7 @@ void Window::pollEvents() {
   // Mouse events
   Vector2 current_mouse_pos = raylib::Mouse::GetPosition();
 
-  if (current_mouse_pos.x != mouse_pos.x &&
+  if (current_mouse_pos.x != mouse_pos.x ||
       current_mouse_pos.y != mouse_pos.y) {
     event_queue.push(
         std::make_shared<event::MouseMoveEvent>(current_mouse_pos));
