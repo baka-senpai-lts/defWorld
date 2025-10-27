@@ -7,6 +7,8 @@
 #include "../events/mouse_wheel_move.hpp"
 #include "drawable.hpp"
 
+#include "../log/logger.hpp"
+
 #include <algorithm>
 #include <cstdint>
 #include <memory>
@@ -151,6 +153,8 @@ Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name)
   // Will be overriden at first event poll, so any values should be fine
   this->mouse_pos.x = 0;
   this->mouse_pos.y = 0;
+
+  MT_LOG_INFO("Window class initialized with size {}x{}", size_x, size_y);
 }
 
 Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name,
@@ -248,10 +252,16 @@ void Window::init() {
                                             this->window_name);
   if (target_fps != 0) {
     window->SetTargetFPS(target_fps);
+    MT_LOG_INFO("FPS set to uncapped");
   }
+
+  MT_LOG_INFO("Window initialized", size_x, size_y);
 }
 
-void Window::die() { window.reset(); }
+void Window::die() {
+  window.reset();
+  MT_LOG_INFO("Window cleaned up");
+}
 
 bool Window::shouldClose() const { return window->ShouldClose(); }
 
