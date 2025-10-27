@@ -1,7 +1,7 @@
 #ifndef EVENT_H_
 #define EVENT_H_
 
-namespace game {
+namespace engine {
 
 enum EventType {
   NONE,
@@ -25,6 +25,6 @@ public:
   EventType getEventType() const { return type; };
 };
 
-} // namespace game
+} // namespace engine
 
 #endif // EVENT_H_

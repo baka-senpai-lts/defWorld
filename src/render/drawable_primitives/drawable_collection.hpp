@@ -8,7 +8,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace game::render {
+namespace engine::render {
 
 class DrawableCollection : public Drawable {
 private:
@@ -27,6 +27,6 @@ public:
   void draw() const override;
 };
 
-} // namespace game::render
+} // namespace engine::render
 
 #endif // DRAWABLE_COLLECTION_H_

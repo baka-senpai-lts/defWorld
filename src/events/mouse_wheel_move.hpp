@@ -4,7 +4,7 @@
 #include "event.hpp"
 #include <raylib.h>
 
-namespace game::event {
+namespace engine::event {
 
 class MouseWheelMoveEvent : public Event {
 private:
@@ -16,7 +16,7 @@ public:
     movement = 0;
   }
 
-  MouseWheelMoveEvent(float movement) : game::event::MouseWheelMoveEvent() {
+  MouseWheelMoveEvent(float movement) : engine::event::MouseWheelMoveEvent() {
     this->movement = movement;
   }
 
@@ -25,6 +25,6 @@ public:
   float getWheelMovement() const { return movement; }
 };
 
-} // namespace game::event
+} // namespace engine::event
 
 #endif // MOUSE_WHEEL_MOVE_H_

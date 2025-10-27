@@ -4,7 +4,7 @@
 #include "event.hpp"
 #include <raylib.h>
 
-namespace game::event {
+namespace engine::event {
 
 class KeyUpEvent : public Event {
 private:
@@ -16,13 +16,13 @@ public:
     key = KeyboardKey::KEY_NULL;
   }
 
-  KeyUpEvent(int key) : game::event::KeyUpEvent() { this->key = key; }
+  KeyUpEvent(int key) : engine::event::KeyUpEvent() { this->key = key; }
 
   ~KeyUpEvent() {}
 
   int getKey() const { return key; }
 };
 
-} // namespace game::event
+} // namespace engine::event
 
 #endif // KEY_UP_H_

@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 
-namespace game::render {
+namespace engine::render {
 
 DrawableCollection::DrawableCollection(
     std::unordered_map<std::string, std::shared_ptr<Drawable>> drawables,
@@ -45,4 +45,4 @@ void DrawableCollection::draw() const {
   }
 }
 
-} // namespace game::render
+} // namespace engine::render

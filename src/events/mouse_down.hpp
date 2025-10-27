@@ -4,7 +4,7 @@
 #include "event.hpp"
 #include <raylib.h>
 
-namespace game::event {
+namespace engine::event {
 
 class MouseDownEvent : public Event {
 private:
@@ -18,7 +18,7 @@ public:
     button = 0;
   }
 
-  MouseDownEvent(int button) : game::event::MouseDownEvent() {
+  MouseDownEvent(int button) : engine::event::MouseDownEvent() {
     this->button = button;
   }
 
@@ -27,6 +27,6 @@ public:
   int getButton() const { return button; }
 };
 
-} // namespace game::event
+} // namespace engine::event
 
 #endif // MOUSE_DOWN_H_

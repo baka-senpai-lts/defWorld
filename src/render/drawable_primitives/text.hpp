@@ -6,7 +6,7 @@
 #include <raylib.h>
 #include <string>
 
-namespace game::render {
+namespace engine::render {
 
 class Text : public Drawable {
 private:
@@ -23,6 +23,6 @@ public:
   void draw() const override;
 };
 
-} // namespace game::render
+} // namespace engine::render
 
 #endif // TEXT_H_

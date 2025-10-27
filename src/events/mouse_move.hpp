@@ -4,7 +4,7 @@
 #include "event.hpp"
 #include <raylib.h>
 
-namespace game::event {
+namespace engine::event {
 
 class MouseMoveEvent : public Event {
 private:
@@ -17,7 +17,7 @@ public:
     pos.y = 0;
   }
 
-  MouseMoveEvent(Vector2 pos) : game::event::MouseMoveEvent() {
+  MouseMoveEvent(Vector2 pos) : engine::event::MouseMoveEvent() {
     this->pos.x = pos.x;
     this->pos.y = pos.y;
   }
@@ -29,6 +29,6 @@ public:
   int getY() const { return pos.y; }
 };
 
-} // namespace game::event
+} // namespace engine::event
 
 #endif // MOUSE_MOVE_H_

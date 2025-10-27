@@ -12,7 +12,7 @@
 #include <memory>
 #include <raylib.h>
 
-namespace game::render {
+namespace engine::render {
 
 Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name)
     : size_x(size_x), size_y(size_y), window_name(window_name), target_fps(60) {
@@ -276,4 +276,4 @@ void Window::drawFrame(
   window->EndDrawing();
 }
 
-} // namespace game::render
+} // namespace engine::render

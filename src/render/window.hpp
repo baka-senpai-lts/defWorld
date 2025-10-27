@@ -12,7 +12,7 @@
 #include <string>
 #include <unordered_map>
 
-namespace game::render {
+namespace engine::render {
 
 // Only used in here, later in stack you will only see events
 enum class KeyState { Up, Down };
@@ -52,6 +52,6 @@ public:
   void die();
 };
 
-} // namespace game::render
+} // namespace engine::render
 
 #endif // WINDOW_H_

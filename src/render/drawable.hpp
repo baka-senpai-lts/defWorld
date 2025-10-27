@@ -3,7 +3,7 @@
 
 #include <raylib.h>
 
-namespace game::render {
+namespace engine::render {
 
 class Drawable {
 protected:
@@ -49,6 +49,6 @@ public:
   };
 };
 
-} // namespace game::render
+} // namespace engine::render
 
 #endif // DRAWABLE_H_
