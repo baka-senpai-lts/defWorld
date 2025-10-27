@@ -64,8 +64,9 @@ void Logger::log(LogLevel level, std::string_view msg) {
 
   {
     std::lock_guard<std::mutex> lock(messages_mtx);
-    messages.push(
-        Message{std::string(msg), level, std::chrono::system_clock::now()});
+    messages.push(Message{.message = std::string(msg),
+                          .level = level,
+                          .timestamp = std::chrono::system_clock::now()});
   }
 
   cv.notify_one();
