@@ -49,7 +49,7 @@ void Logger::printMessage(Message msg) {
                                      getLogLevelPrefix(msg.level), msg.message);
 
   if (write_stdout) {
-    std::cout << str;
+    std::cout << getLogLevelColor(msg.level) << str << "\033[0m";
   }
 
   if (write_file) {
@@ -84,6 +84,23 @@ std::string Logger::getLogLevelPrefix(LogLevel log_level) const {
     return "ERROR";
   case LogLevel::CRITICAL:
     return "CRITICAL";
+  }
+
+  return "";
+}
+
+std::string Logger::getLogLevelColor(LogLevel log_level) const {
+  switch (log_level) {
+  case LogLevel::DEBUG:
+    return "\033[37m";
+  case LogLevel::INFO:
+    return "\033[32m";
+  case LogLevel::WARNING:
+    return "\033[33m";
+  case LogLevel::ERROR:
+    return "\033[35m";
+  case LogLevel::CRITICAL:
+    return "\033[31m";
   }
 
   return "";

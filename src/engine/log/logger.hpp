@@ -72,6 +72,7 @@ private:
         thread(&Logger::run, this) {};
 
   std::string getLogLevelPrefix(LogLevel log_level) const;
+  std::string getLogLevelColor(LogLevel log_level) const;
 
   void run();
   void printMessage(Message message);
