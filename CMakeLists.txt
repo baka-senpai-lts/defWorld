@@ -34,6 +34,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
+include(FetchContent)
+
+FetchContent_Declare(
+  fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt
+  GIT_TAG        e69e5f977d458f2650bb346dadf2ad30c5320281) # 10.2.1
+FetchContent_MakeAvailable(fmt)
+
 add_executable(tests "${TESTS_DIR}/test-main.cpp")
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
@@ -43,7 +51,7 @@ file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")
 # Our Project
 add_executable(${PROJECT_NAME} ${SOURCES})
 #set(raylib_VERBOSE 1)
-target_link_libraries(${PROJECT_NAME} raylib raylib_cpp)
+target_link_libraries(${PROJECT_NAME} raylib raylib_cpp fmt::fmt)
 
 # Checks if OSX and links appropriate frameworks (Only required on MacOS)
 if (APPLE)
