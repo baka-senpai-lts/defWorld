@@ -41,11 +41,11 @@ public:
 
   void draw(const Vector2 &offset) {
     // I know it's shit, but it works
+    Vector2 prev = pos;
     pos.x += offset.x;
     pos.y += offset.y;
     draw();
-    pos.x -= offset.x;
-    pos.y -= offset.y;
+    pos = prev;
   };
 };
 
