@@ -147,6 +147,10 @@ if(WIN32)
     )
 endif()
 
+add_custom_command(TARGET spin-or-die PRE_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:spin-or-die>/assets/)
+
 if(APPLE)
     # macOS: Copy dylibs next to executable
     file(WRITE "${CMAKE_BINARY_DIR}/copy_libs_macos.sh" "#!/bin/bash\n")
