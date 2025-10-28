@@ -154,7 +154,7 @@ Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name)
   this->mouse_pos.x = 0;
   this->mouse_pos.y = 0;
 
-  MT_LOG_INFO("Window class initialized with size {}x{}", size_x, size_y);
+  MT_LOG_INFO("Window object initialized with size {}x{}", size_x, size_y);
 }
 
 Window::Window(uint32_t size_x, uint32_t size_y, std::string window_name,
