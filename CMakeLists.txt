@@ -1,12 +1,8 @@
 cmake_minimum_required(VERSION 3.11) # FetchContent is available in 3.11+
 project(my-game)
 
-set(CMAKE_BUILD_TYPE DEBUG)
-
-set(CMAKE_C_FLAGS_DEBUG "-O2")
-set(CMAKE_CXX_FLAGS_DEBUG "-O2")
-set(CMAKE_C_FLAGS_RELEASE "-Ofast")
-set(CMAKE_CXX_FLAGS_RELEASE "-Ofast")
+set(CMAKE_C_FLAGS "-O2")
+set(CMAKE_CXX_FLAGS "-O2")
 
 # Static linking configuration
 if(WIN32)
