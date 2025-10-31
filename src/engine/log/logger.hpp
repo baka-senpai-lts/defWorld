@@ -99,11 +99,19 @@ public:
 
   void log(LogLevel level, std::string_view message);
 
-  void logDebug(std::string_view message) { log(LogLevel::DEBUG, message); }
-  void logInfo(std::string_view message) { log(LogLevel::INFO, message); }
-  void logWarning(std::string_view message) { log(LogLevel::WARNING, message); }
-  void logError(std::string_view message) { log(LogLevel::ERROR, message); }
-  void logCritical(std::string_view message) {
+  inline void logDebug(std::string_view message) {
+    log(LogLevel::DEBUG, message);
+  }
+  inline void logInfo(std::string_view message) {
+    log(LogLevel::INFO, message);
+  }
+  inline void logWarning(std::string_view message) {
+    log(LogLevel::WARNING, message);
+  }
+  inline void logError(std::string_view message) {
+    log(LogLevel::ERROR, message);
+  }
+  inline void logCritical(std::string_view message) {
     log(LogLevel::CRITICAL, message);
   }
 };
