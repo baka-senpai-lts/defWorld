@@ -45,7 +45,7 @@ void Logger::printMessage(Message msg) {
   std::tm tm;
 
 #ifdef _WIN32
-  localtime_s(&t, &tm);
+  localtime_s(&tm, &t);
 #else
   localtime_r(&t, &tm);
 #endif

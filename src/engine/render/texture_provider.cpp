@@ -90,8 +90,13 @@ bool TextureProvider::preload(const std::string &id) {
   }
 
   try {
+#ifdef _WIN32
+    std::shared_ptr<Texture2D> texture =
+        std::make_shared<raylib::Texture2D>(registered_textures[id].string());
+#else
     std::shared_ptr<Texture2D> texture =
         std::make_shared<raylib::Texture2D>(registered_textures[id]);
+#endif
 
     if (texture->id == 0) {
       MT_LOG_ERROR("Raylib error loading texture on id {}", id);
@@ -195,7 +200,11 @@ void TextureProvider::unloadAll() {
                    id);
 
       to_unload[id] = texture_cache[full_path];
+#ifdef _WIN32
+      to_erase.push_back(full_path.string());
+#else
       to_erase.push_back(full_path);
+#endif
     }
   }
 
