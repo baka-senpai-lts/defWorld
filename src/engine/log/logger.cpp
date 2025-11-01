@@ -43,7 +43,12 @@ void Logger::printMessage(Message msg) {
   auto t = std::chrono::system_clock::to_time_t(msg.timestamp);
 
   std::tm tm;
+
+#ifdef _WIN32
+  localtime_s(&t, &tm);
+#else
   localtime_r(&t, &tm);
+#endif
 
   std::string str = fmt::v10::format("[{:%Y-%m-%d %H:%M:%S}] [{}] {}\n", tm,
                                      getLogLevelPrefix(msg.level), msg.message);
