@@ -72,6 +72,7 @@ list(FILTER NO_MAIN_SOURCES EXCLUDE REGEX ".*/main\\.cpp")
 file(GLOB_RECURSE TESTS_SOURCES "${TESTS_DIR}/*.cpp")
 
 add_executable(tests ${TESTS_SOURCES} ${NO_MAIN_SOURCES})
+target_include_directories(tests PRIVATE ${SOURCE_DIR})
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain raylib raylib_cpp fmt::fmt)
 
 # Project files
