@@ -37,6 +37,13 @@ void Logger::run() {
     lock.unlock();
 
     if (msg.change_file) {
+      lock.lock();
+
+      if (output_file.is_open()) {
+        output_file.flush();
+        output_file.close();
+      }
+
       output_file.open(file_path);
       continue;
     }
@@ -65,6 +72,10 @@ void Logger::printMessage(Message msg) {
   }
 
   if (write_file) {
+    if (!output_file.is_open()) {
+      output_file.open(file_path);
+    }
+
     output_file << str;
   }
 }

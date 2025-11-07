@@ -79,8 +79,7 @@ private:
   Logger(LogLevel verbosity = INFO, bool write_stdout = true,
          bool write_file = true, std::filesystem::path file = "./log.txt")
       : verbosity(verbosity), file_path(file), write_stdout(write_stdout),
-        write_file(write_file), output_file(file), die(false),
-        thread(&Logger::run, this) {};
+        write_file(write_file), die(false), thread(&Logger::run, this) {};
 
   std::string getLogLevelPrefix(LogLevel log_level) const;
   std::string getLogLevelColor(LogLevel log_level) const;
