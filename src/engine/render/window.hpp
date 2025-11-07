@@ -37,7 +37,7 @@ public:
   Window(uint32_t size_x, uint32_t size_y, std::string window_name);
   Window(uint32_t size_x, uint32_t size_y, std::string window_name,
          uint32_t target_fps);
-  ~Window() {};
+  ~Window() { die(); };
 
   void pollEvents();
 
