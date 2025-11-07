@@ -1,3 +1,9 @@
 CompileFlags:
   Add:
     - "-I${workspaceFolder}/external/raylib-cpp"
+
+If:
+  PathInclude: [tests/]
+CompileFlags:
+  Add:
+    - "-I${workspaceFolder}/src"
