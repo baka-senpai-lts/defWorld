@@ -5,6 +5,7 @@
 #include <fmt/core.h>
 #include <iostream>
 #include <mutex>
+#include <ostream>
 
 namespace engine::log {
 
@@ -34,6 +35,12 @@ void Logger::run() {
     messages.pop();
 
     lock.unlock();
+
+    if (msg.change_file) {
+      output_file.open(file_path);
+      continue;
+    }
+
     printMessage(msg);
     lock.lock();
   }
@@ -109,6 +116,17 @@ std::string Logger::getLogLevelColor(LogLevel log_level) const {
   }
 
   return "";
+}
+
+void Logger::setFilePath(std::filesystem::path file) {
+  file_path = file;
+
+  {
+    std::lock_guard<std::mutex> lock(messages_mtx);
+    messages.push(Message{.change_file = true});
+  }
+
+  cv.notify_one();
 }
 
 } // namespace engine::log

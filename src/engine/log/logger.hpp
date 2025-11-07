@@ -49,6 +49,10 @@ private:
     std::string message;
     LogLevel level;
     std::chrono::system_clock::time_point timestamp;
+
+    // If this is set, it won't print the message, exists purely to make
+    // changing file path work in async context
+    bool change_file = false;
   };
 
   std::thread thread;
@@ -88,7 +92,7 @@ public:
   void setLogLevel(LogLevel verbosity) { this->verbosity = verbosity; };
   inline LogLevel getLogLevel() const { return verbosity; }
 
-  void setFilePath(std::filesystem::path file) { file_path = file; };
+  void setFilePath(std::filesystem::path file);
   inline std::filesystem::path getFilePath() const { return file_path; }
 
   void setWriteStdout(bool write_stdout) { this->write_stdout = write_stdout; }
