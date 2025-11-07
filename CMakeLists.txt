@@ -67,8 +67,12 @@ FetchContent_Declare(
   GIT_TAG        e69e5f977d458f2650bb346dadf2ad30c5320281) # 10.2.1
 FetchContent_MakeAvailable(fmt)
 
-add_executable(tests "${TESTS_DIR}/test-main.cpp")
-target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+file(GLOB_RECURSE NO_MAIN_SOURCES "${SOURCE_DIR}/*.cpp")
+list(FILTER NO_MAIN_SOURCES EXCLUDE REGEX ".*/main\\.cpp")
+file(GLOB_RECURSE TESTS_SOURCES "${TESTS_DIR}/*.cpp")
+
+add_executable(tests ${TESTS_SOURCES} ${NO_MAIN_SOURCES})
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain raylib raylib_cpp fmt::fmt)
 
 # Project files
 file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")
