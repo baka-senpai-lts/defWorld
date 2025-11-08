@@ -33,6 +33,15 @@ public:
     return (component != components.end()) ? component->second : nullptr;
   }
 
+  // Returns nullptr if there is no component with such id
+  template <typename T>
+  inline std::shared_ptr<T> getComponent(const std::string &id) const {
+    auto component = components.find(id);
+    return (component != components.end())
+               ? std::static_pointer_cast<T>(component->second)
+               : nullptr;
+  }
+
   inline std::unordered_set<std::string> getComponentIDs() const {
     std::unordered_set<std::string> ids;
 
