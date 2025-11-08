@@ -17,15 +17,6 @@ private:
 public:
   ~Entity() = default;
 
-  void operator=(Entity const &entity) {
-    // Just copying the components
-    components.clear();
-
-    for (const auto &[id, component] : entity.components) {
-      components[id] = std::make_shared<Component>(*component);
-    }
-  };
-
   inline void addComponent(std::shared_ptr<Component> component) {
     components[component->getComponentID()] = component;
   };
