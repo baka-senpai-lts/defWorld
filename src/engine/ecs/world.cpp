@@ -90,6 +90,11 @@ World::query(const std::unordered_set<std::string> &ids, bool _and) {
   std::vector<std::pair<std::shared_ptr<Entity>, std::string>> result;
   id_bitset bitmask = componentIDsToBitmask(ids);
 
+  if (bitmask == 0) {
+    MT_LOG_ERROR("Empty query, returning empty list");
+    return {};
+  }
+
   if (_and) { // AND query
     auto cache_hit = and_query_cache.find(bitmask);
     if (cache_hit != and_query_cache.end()) {
