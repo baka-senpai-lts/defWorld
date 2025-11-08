@@ -48,8 +48,9 @@ World::componentIDsToBitmask(const std::unordered_set<std::string> &ids) {
 void World::addEntity(const std::string &id, std::shared_ptr<Entity> entity) {
   if (entities.find(id) != entities.end()) {
     MT_LOG_ERROR("Trying to add existing entity to world by id {}, check for "
-                 "id collisions, overwriting existing entity",
+                 "id collisions, not daring to overwrite it",
                  id);
+    return;
   }
 
   std::unordered_set<std::string> components_ids = entity->getComponentIDs();
