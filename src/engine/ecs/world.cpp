@@ -98,7 +98,6 @@ World::query(const std::unordered_set<std::string> &ids, bool _and) {
   if (_and) { // AND query
     auto cache_hit = and_query_cache.find(bitmask);
     if (cache_hit != and_query_cache.end()) {
-      MT_LOG_DEBUG("Cache hit on AND query");
       return and_query_cache[bitmask];
     }
 
@@ -113,7 +112,6 @@ World::query(const std::unordered_set<std::string> &ids, bool _and) {
   } else { // OR query
     auto cache_hit = or_query_cache.find(bitmask);
     if (cache_hit != or_query_cache.end()) {
-      MT_LOG_DEBUG("Cache hit on OR query");
       return or_query_cache[bitmask];
     }
 
