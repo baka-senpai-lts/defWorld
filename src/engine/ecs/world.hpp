@@ -55,6 +55,8 @@ public:
   void addEntity(const std::string &id, std::shared_ptr<Entity> entity);
   void removeEntity(const std::string &id);
 
+  void clear();
+
   // Returns nullptr if it cannot find entity by specified id
   std::shared_ptr<Entity> getEntity(const std::string &id) const;
 

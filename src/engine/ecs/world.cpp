@@ -85,6 +85,12 @@ std::shared_ptr<Entity> World::getEntity(const std::string &id) const {
   return entity->second.first;
 }
 
+void World::clear() {
+  and_query_cache.clear();
+  or_query_cache.clear();
+  entities.clear();
+}
+
 std::vector<std::pair<std::shared_ptr<Entity>, std::string>>
 World::query(const std::unordered_set<std::string> &ids, bool _and) {
   std::vector<std::pair<std::shared_ptr<Entity>, std::string>> result;
