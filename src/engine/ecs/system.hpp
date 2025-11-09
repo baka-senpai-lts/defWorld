@@ -14,7 +14,8 @@ enum SystemPhase {
   LOGIC = 2,
   LATE = 3,
   PHYSICS = 4,
-  RENDER = 5
+  RENDER = 5,
+  END = 6
 };
 
 // System can store data inside of it when really needed
