@@ -3,10 +3,13 @@
 
 #include "component.hpp"
 
+#include <forward_list>
 #include <memory>
 #include <string>
+#include <type_traits>
 #include <unordered_map>
 #include <unordered_set>
+#include <utility>
 
 namespace engine::ecs {
 
@@ -19,6 +22,13 @@ public:
 
   inline void addComponent(std::shared_ptr<Component> component) {
     components[component->getComponentID()] = component;
+  };
+
+  template <class T, typename... Args>
+  inline void addComponent(Args &&...args) {
+    static_assert(std::is_base_of_v<Component, T>,
+                  "T must derive from engine::ecs::Component");
+    addComponent(std::make_shared<T>(std::forward(args)...));
   };
 
   inline void removeComponent(const std::string &id) { components.erase(id); };

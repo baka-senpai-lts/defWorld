@@ -53,6 +53,10 @@ public:
   ~World() = default;
 
   void addEntity(const std::string &id, std::shared_ptr<Entity> entity);
+  inline void addEntity(const std::string &id) {
+    addEntity(id, std::make_shared<Entity>());
+  }
+
   void removeEntity(const std::string &id);
 
   void clear();
@@ -62,6 +66,13 @@ public:
 
   void addComponent(const std::string &id,
                     std::shared_ptr<Component> component);
+
+  template <class T, typename... Args>
+  inline void addComponent(const std::string &id, Args &&...args) {
+    static_assert(std::is_base_of_v<Component, T>,
+                  "T must derive from engine::ecs::Component");
+    addComponent(id, std::make_shared<T>(std::forward<Args>(args)...));
+  }
 
   void removeComponent(const std::string &entity_id,
                        const std::string &component_id);
