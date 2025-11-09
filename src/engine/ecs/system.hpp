@@ -36,6 +36,10 @@ public:
     return dependencies.count(id);
   }
 
+  inline std::string getID() { return id; }
+
+  inline SystemPhase getPhase() { return phase; }
+
   virtual void run(World &world, float delta) = 0;
 };
 
