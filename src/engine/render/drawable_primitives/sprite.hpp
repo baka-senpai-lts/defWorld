@@ -35,7 +35,11 @@ public:
 
   void setTexture(std::shared_ptr<Texture> texture) { this->texture = texture; }
   void setRotation(float rotation) { this->rotation = fmod(rotation, 360); }
-  void setScale(float scale) { this->scale = scale; }
+  void setScale(float scale) {
+    this->scale = scale;
+    origin = {(float)texture->width * scale / 2,
+              (float)texture->height * scale / 2};
+  }
   void setTint(Color tint) { this->tint = tint; }
   void setOrigin(Vector2 origin) { this->origin = origin; }
 
