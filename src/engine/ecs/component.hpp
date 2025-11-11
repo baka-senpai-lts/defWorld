@@ -1,7 +1,10 @@
 #ifndef COMPONENT_H_
 #define COMPONENT_H_
 
+#include "../util/misc.hpp"
+
 #include <string>
+#include <typeinfo>
 
 namespace engine::ecs {
 
@@ -19,6 +22,21 @@ public:
   inline const std::string &getComponentID() const {
     return this->component_id;
   }
+};
+
+template <typename Derived> class ComponentBase : public Component {
+protected:
+  using Base = ComponentBase<Derived>;
+
+public:
+  static const std::string &ID() {
+    static std::string id =
+        util::camelToKebab(util::demangle(typeid(Derived).name()));
+
+    return id;
+  }
+
+  ComponentBase() { component_id = ID(); }
 };
 
 } // namespace engine::ecs
