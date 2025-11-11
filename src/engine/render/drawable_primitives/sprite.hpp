@@ -19,8 +19,8 @@ private:
   Vector2 origin;
 
 public:
-  Sprite(std::shared_ptr<Texture> texture, Vector2 pos, float rotation = 0,
-         Color tint = WHITE, float scale = 1, int z = 0)
+  Sprite(std::shared_ptr<Texture> texture, Vector2 pos, int z = 0,
+         float rotation = 0, Color tint = WHITE, float scale = 1)
       : Drawable(pos, z), rotation(fmod(rotation, 360)), scale(scale),
         texture(texture), tint(tint) {
     MT_LOG_DEBUG("Initialized sprite with texture size {}x{}", texture->height,
