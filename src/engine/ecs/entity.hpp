@@ -52,6 +52,13 @@ public:
                : nullptr;
   }
 
+  // Returns nullptr if there is no component with such id
+  template <typename T> inline std::shared_ptr<T> getComponent() const {
+    static_assert(std::is_base_of_v<ComponentBase<T>, T>,
+                  "T must derive from engine::ecs::ComponentBase<T>");
+    return getComponent<T>(T::ID());
+  }
+
   inline std::unordered_set<std::string> getComponentIDs() const {
     std::unordered_set<std::string> ids;
 
