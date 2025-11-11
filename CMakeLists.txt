@@ -80,6 +80,7 @@ file(GLOB_RECURSE SOURCES "${SOURCE_DIR}/*.cpp")
 
 # Our Project
 add_executable(${PROJECT_NAME} ${SOURCES})
+target_include_directories(${PROJECT_NAME} PRIVATE ${SOURCE_DIR})
 #set(raylib_VERBOSE 1)
 target_link_libraries(${PROJECT_NAME} raylib raylib_cpp fmt::fmt)
 
