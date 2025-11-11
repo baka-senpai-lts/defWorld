@@ -3,7 +3,6 @@
 
 #include "component.hpp"
 
-#include <forward_list>
 #include <memory>
 #include <string>
 #include <type_traits>
