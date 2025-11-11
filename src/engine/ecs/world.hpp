@@ -1,6 +1,7 @@
 #ifndef WORLD_H_
 #define WORLD_H_
 
+#include "engine/ecs/component.hpp"
 #include "entity.hpp"
 
 #include <bitset>
@@ -82,6 +83,35 @@ public:
   // entity vector has updated
   std::vector<std::pair<std::shared_ptr<Entity>, std::string>>
   query(const std::unordered_set<std::string> &ids, bool _and = true);
+
+  template <typename T, typename... Components>
+  inline std::vector<std::pair<std::shared_ptr<Entity>, std::string>>
+  query(bool _and = true) {
+    static_assert(std::is_base_of_v<ComponentBase<T>, T>,
+                  "T must derive from engine::ecs::ComponentBase");
+    if constexpr (sizeof...(Components) > 0) {
+      return query<Components...>(std::unordered_set<std::string>{T::ID()},
+                                  _and);
+    } else {
+      // Special case for query with one component
+      return query(std::unordered_set<std::string>{T::ID()}, _and);
+    }
+  }
+
+  template <typename T, typename... Components>
+  inline std::vector<std::pair<std::shared_ptr<Entity>, std::string>>
+  query(const std::unordered_set<std::string> &ids, bool _and = true) {
+    static_assert(std::is_base_of_v<ComponentBase<T>, T>,
+                  "T must derive from engine::ecs::ComponentBase");
+    auto new_ids = ids;
+    new_ids.insert(T::ID());
+
+    if constexpr (sizeof...(Components) > 0) {
+      return query<Components...>(new_ids, _and);
+    } else {
+      return query(new_ids, _and);
+    }
+  }
 };
 
 } // namespace engine::ecs
