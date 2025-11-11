@@ -49,14 +49,14 @@ public:
   }
 
   // Returns nullptr if there is no component with such id
-  inline std::shared_ptr<Component> getComponent(const std::string &id) const {
+  inline std::shared_ptr<Component> get(const std::string &id) const {
     auto component = components.find(id);
     return (component != components.end()) ? component->second : nullptr;
   }
 
   // Returns nullptr if there is no component with such id
   template <typename T>
-  inline std::shared_ptr<T> getComponent(const std::string &id) const {
+  inline std::shared_ptr<T> get(const std::string &id) const {
     auto component = components.find(id);
     return (component != components.end())
                ? std::static_pointer_cast<T>(component->second)
@@ -64,10 +64,10 @@ public:
   }
 
   // Returns nullptr if there is no component with such id
-  template <typename T> inline std::shared_ptr<T> getComponent() const {
+  template <typename T> inline std::shared_ptr<T> get() const {
     static_assert(std::is_base_of_v<ComponentBase<T>, T>,
                   "T must derive from engine::ecs::ComponentBase<T>");
-    return getComponent<T>(T::ID());
+    return get<T>(T::ID());
   }
 
   inline std::unordered_set<std::string> getComponentIDs() const {
