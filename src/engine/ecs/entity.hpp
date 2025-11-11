@@ -33,8 +33,20 @@ public:
 
   inline void removeComponent(const std::string &id) { components.erase(id); };
 
+  template <typename T> inline void removeComponent() {
+    static_assert(std::is_base_of_v<ComponentBase<T>, T>,
+                  "T must derive from engine::ecs::ComponentBase<T>");
+    removeComponent(T::ID());
+  };
+
   inline bool contains(const std::string &id) const {
     return components.count(id);
+  }
+
+  template <typename T> inline bool contains() const {
+    static_assert(std::is_base_of_v<ComponentBase<T>, T>,
+                  "T must derive from engine::ecs::ComponentBase<T>");
+    return components.count(T::ID());
   }
 
   // Returns nullptr if there is no component with such id
