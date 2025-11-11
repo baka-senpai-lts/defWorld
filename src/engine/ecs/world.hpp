@@ -78,6 +78,12 @@ public:
   void removeComponent(const std::string &entity_id,
                        const std::string &component_id);
 
+  template <typename T> void removeComponent(const std::string &entity_id) {
+    static_assert(std::is_base_of_v<ComponentBase<T>, T>,
+                  "T must derive from engine::ecs::ComponentBase");
+    removeComponent(entity_id, T::ID());
+  }
+
   // _and defines if entity should have one of components to be included or all
   // of them, should run in O(n) on first query and O(1) on every next until
   // entity vector has updated
