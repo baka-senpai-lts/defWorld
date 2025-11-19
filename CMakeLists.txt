@@ -147,9 +147,9 @@ if(UNIX AND NOT APPLE)
     )
 endif()
 
-add_custom_command(TARGET spin-or-die PRE_BUILD
+add_custom_command(TARGET my-game PRE_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:spin-or-die>/assets/)
+                       ${CMAKE_SOURCE_DIR}/assets/ $<TARGET_FILE_DIR:my-game>/assets/)
 
 if(APPLE)
     # macOS: Copy dylibs next to executable
